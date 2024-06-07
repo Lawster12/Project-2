@@ -5,6 +5,7 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 const sequelize = require('./config/connection');
 const routes = require('./controllers/routes');
+// const axios = require('axios');
 
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
