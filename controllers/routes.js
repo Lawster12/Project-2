@@ -1,14 +1,22 @@
 const router = require('express').Router();
-const { Module } = require('../models');
-const { Lessons } = require('../models');
+const { Module, Lessons} = require('../models');
+
 
 
 router.get('/', async (req, res) => {
-    const moduleData = await Module.findAll().catch((err) => { res.json(err); });
-    const modules = moduleData.map((module) => module.get({ plain: true }));
-    const lessonData = await Lessons.findAll().catch((err) => { res.json(err); });
-    const lessons = lessonData.map((lesson) => lesson.get({ plain: true }));
-    res.render('home', { modules, lessons });
+    try {
+        
+        const moduleData = await Module.findAll({
+            include: [Lessons]
+        })
+        const modules = moduleData.map((module) => module.get({ plain: true }));
+        console.log("modules", modules)
+;
+        res.render('home', { modules  });
+    } catch (error) {
+        res.json(error)
+    }
 });
+
 
 module.exports = router;
