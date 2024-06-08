@@ -15,6 +15,10 @@ Lessons.init(
             type: DataTypes.STRING,
             allowNull: false
         },
+        url: {
+            type: DataTypes.STRING,
+            // allowNull: false
+        },
         module_id: {
             type: DataTypes.INTEGER,
             allowNull: false,

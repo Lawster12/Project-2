@@ -1,13 +1,22 @@
-{{#each modules as |module|}}
-<div class="accordion accordion-flush" id="accordionFlushExample">
-  <div class="accordion-item">
-    <h2 class="accordion-header">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-        {{module.module_title}}
-      </button>
-    </h2>
-    <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-      <div class="accordion-body">{{lessons.lesson_title}}</div>
+  <div class="accordion" id="accordionExample">
+    {{#each modules as |module|}}
+    <div class="accordion-item">
+      <h2 class="accordion-header">
+        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{module.id}}"
+          aria-expanded="true" aria-controls="collapse{{module.id}}">
+          {{module.module_title}}
+        </button>
+      </h2>
+      <div id="collapse{{module.id}}" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+        {{#each module.lessons as |lesson|}}
+        <div class="accordion-body">
+          <h3>{{lesson.lesson_title}}</h3>
+          <p>click here to view lession</p>
+          <a href="#" target="_blank">{{lesson.lesson_title}}</a>
+        </div>
+        {{/each}}
+      </div>
     </div>
+
+    {{/each}}
   </div>
-  {{/each}}
