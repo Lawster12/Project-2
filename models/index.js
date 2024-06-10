@@ -1,5 +1,6 @@
 const Module = require('./Module');
 const Lessons = require('./Lessons');
+const User = require('./User');
 
 Module.hasMany(Lessons, {
     foreignKey: 'module_id',
@@ -10,4 +11,4 @@ Lessons.belongsTo(Module, {
     foreignKey: 'module_id'
 });
 
-module.exports = { Module, Lessons };
+module.exports = { Module, Lessons, User };
