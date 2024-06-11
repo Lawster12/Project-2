@@ -12,7 +12,7 @@ router.post('/', async (req, res) => {
         });
 
         req.session.save(() => {
-            req.session.loggedIn = true;
+            req.session.email = req.body.email;
             res.status(200).json(userData);
         });
     }catch (err) {
@@ -23,6 +23,7 @@ router.post('/', async (req, res) => {
 
 // LOGIN user
 router.post('/login', async (req, res) => {
+    console.log("login route");
     try {
         const userData = await User.findOne({
             where: {
@@ -45,7 +46,7 @@ router.post('/login', async (req, res) => {
         }
 
         req.session.save(() => {
-            req.session.loggedIn = true;
+            req.session.email = userData.email;
             res
             .status(200)
             .json({user: userData, message: 'You are now logged in!'});
@@ -57,15 +58,7 @@ router.post('/login', async (req, res) => {
 });
 
 // LOGOUT user
-router.post('/logout', (req, res) => {
-    if (req.session.loggedIn) {
-        req.session.destroy(() => {
-            res.status(204).end();
-        });
-    } else {
-        res.status(404).end();
-    }
-});
+
 
 
 module.exports = router;
