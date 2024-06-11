@@ -17,31 +17,12 @@ router.get('/', async (req, res) => {
     }
 });
 
-const getSignupPage = () => {
-    axios.get('http://localhost:3001/signup')
-    .then((response) => {
-        console.log(response.data)
-    })
-    .catch((error) => console.error(error));
-};
-getSignupPage();
+router.get('/login', async (req, res) => {
+    res.render('login');
+});
 
 router.get('/signup', async (req, res) => {
     res.render('signup');
 });
-// const axiosInstance = axios.create({
-//     baseURL: 'http://localhost:3001',
-//     maxRedirects: 5,
-//   });
-// const getSignupPage = () => {
-//     axiosInstance.get('/signup')
-//     .then((response) => {
-//         console.log(response.data)
-//         render('signup', response.data)
-//     })
-//     .catch((error) => console.error(error));
-// };
-// getSignupPage();
-
 
 module.exports = router;
