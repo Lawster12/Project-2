@@ -10,7 +10,7 @@ const loginFormFunction = async (event) => {
             headers: { 'Content-Type': 'application/json' },
         });
         if (response.ok) {
-            document.location.assign('/home');
+            document.location.assign('/');
             console.log('logged in');
         } else {
             alert('Failed to log in');

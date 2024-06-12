@@ -2,8 +2,8 @@ const router = require('express').Router();
 const { Module, Lessons} = require('../models');
 const withEmail = require('../utils/loggedin');
 
-router.get('/home', withEmail, async (req, res) => {
-    console.log("home route");
+router.get('/', withEmail, async (req, res) => {
+
     try {
         const moduleData = await Module.findAll({
             include: [Lessons]
@@ -13,7 +13,7 @@ router.get('/home', withEmail, async (req, res) => {
 
         res.render('home', { 
             modules: modules,
-            email: req.session.email,
+            email: req.session.loggedIn,
         });
 
     } catch (error) {
@@ -21,13 +21,15 @@ router.get('/home', withEmail, async (req, res) => {
     }
 });
 
-router.get('/', async (req, res) => {
-    if (req.session.email) {
-        res.redirect('/home');
+router.get('/login', async (req, res) => {
+    if (req.session.loggedIn) {
+        res.redirect('/');
         return;
     }
     res.render('login');
 });
+
+
 
 router.get('/signup', async (req, res) => {
     res.render('signup');
