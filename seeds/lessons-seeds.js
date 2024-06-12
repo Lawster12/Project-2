@@ -2,9 +2,34 @@ const {Lessons} = require('../models');
 
 const lessonData = [
     {
-        lesson_title: 'HTML Basics 1',
+        lesson_title: 'HTML Introduction',
         module_id: 1,
-        // url: ''
+        url: 'https://www.w3schools.com/html/html_intro.asp'
+    },
+    {
+        lesson_title: 'HTML Forms',
+        module_id: 1,
+        url: 'https://www.w3schools.com/html/html_forms.asp'
+    },
+    {
+        lesson_title: 'HTML Canvas Graphics',
+        module_id: 1,
+        url: 'https://www.w3schools.com/html/html5_canvas.asp'
+    },
+    {
+        lesson_title: 'HTML Media',
+        module_id: 1,
+        url: 'https://www.w3schools.com/html/html_media.asp'
+    },
+    {
+        lesson_title: 'HTML Geolocation API',
+        module_id: 1,
+        url: 'https://www.w3schools.com/html/html5_geolocation.asp'
+    },
+    {
+        lesson_title: 'HTML Examples',
+        module_id: 1,
+        url: 'https://www.w3schools.com/html/html_examples.asp'
     },
     {
         lesson_title: 'CSS Basics',
@@ -26,11 +51,7 @@ const lessonData = [
         module_id: 5,
         // url: ''
     },
-    {
-        lesson_title: 'HTML basics 2',
-        module_id: 1,
-        // url: ''
-    },
+  
 ];
 
 const seedLesson = () => Lessons.bulkCreate(lessonData);
