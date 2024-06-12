@@ -2,6 +2,18 @@ const router = require('express').Router();
 const { Lessons } = require('../../models');
 const withEmail = require('../../utils/loggedin');
 
+
+// get all lessons
+router.get(`/`, async (req, res) => {
+    try{
+        const LessonsData = await Lessons.findAll();
+        res.json(LessonsData);
+    }
+    catch(err) {
+        console.log(err);
+        res.status(500).json(err);
+    }
+});
 //Create a new lesson
 
 router.post(`/`, async (req, res) => {

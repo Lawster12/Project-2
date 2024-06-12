@@ -1,16 +1,20 @@
-  {{> nav}}
-  
-  <div class="accordion" id="accordionExample">
-    {{#each modules as |module|}}
-    <div class="accordion-item">
-      <h2 class="accordion-header">
-        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{module.id}}"
-          aria-expanded="true" aria-controls="collapse{{module.id}}">
-          {{module.module_title}}
-        </button>
-      </h2>
-      <div id="collapse{{module.id}}" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-        <ol>
+{{> nav}}
+
+<div class="accordion" id="accordionExample">
+  {{#each modules as |module|}}
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{module.id}}"
+        aria-expanded="true" aria-controls="collapse{{module.id}}">
+        {{module.module_title}}
+      </button>
+    </h2>
+    <div id="collapse{{module.id}}" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+      <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+        <button type="button" class="btn btn-danger btn-sm" id="removeModuleBtn" data-module-id="{{module.id}}">Remove
+          Module</button>
+      </div>
+      <ol>
         {{#each module.lessons as |lesson|}}
         <li class="accordion-body">
           <h3>{{lesson.lesson_title}}</h3>
@@ -18,9 +22,72 @@
           <a href="#" target="_blank">{{lesson.lesson_title}}</a>
         </li>
         {{/each}}
-        </ol>
+      </ol>
+      <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addLesson"
+          data-whatever="@mdo">Add
+          Lesson</button>
       </div>
     </div>
-
-    {{/each}}
   </div>
+  {{/each}}
+</div>
+{{!-- modal for adding lesson --}}
+<div class="modal fade" id="addLesson" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">New Lesson</h5>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="lesson-title" class="col-form-label">Lesson Title:</label>
+            <input type="text" class="form-control" id="lesson-title">
+          </div>
+           <div class="form-group">
+            <label for="url" class="col-form-label">URL:</label>
+            <input type="text" class="form-control" id="url">
+          </div>
+           <div class="form-group">
+            <label for="module_id" class="col-form-label">Module ID:</label>
+            <input type="text" class="form-control" id="module_id">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" id="lessonBtn">Add</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModule" data-whatever="@mdo">Add
+  Module</button>
+<div class="modal fade" id="addModule" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">New Module</h5>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="module-title" class="col-form-label">Module Title:</label>
+            <input type="text" class="form-control" id="module-title">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" id="moduleBtn">Add</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="/js/mod.js"></script>
+<script src="/js/lessons.js"></script>
