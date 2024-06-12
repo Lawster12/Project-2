@@ -2,6 +2,20 @@ const router = require('express').Router();
 const { Module } = require('../../models');
 const withEmail = require('../../utils/loggedin');
 
+
+
+// get all modules
+router.get(`/`, async (req, res) => {
+    try {
+        const ModuleData = await Module.findAll();
+        res.json(ModuleData);
+    }
+    catch (err) {
+        console.log(err);
+        res.status(500).json(err);
+    }
+});
+
 // Create a new Module
 router.post(`/`, async (req, res) => {
     try {
