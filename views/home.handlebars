@@ -10,13 +10,15 @@
         </button>
       </h2>
       <div id="collapse{{module.id}}" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+        <ol>
         {{#each module.lessons as |lesson|}}
-        <div class="accordion-body">
+        <li class="accordion-body">
           <h3>{{lesson.lesson_title}}</h3>
           <p>click here to view lession</p>
           <a href="#" target="_blank">{{lesson.lesson_title}}</a>
-        </div>
+        </li>
         {{/each}}
+        </ol>
       </div>
     </div>
 

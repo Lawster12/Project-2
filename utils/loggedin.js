@@ -1,9 +1,8 @@
 const withEmail = (req, res, next) => {
-  if (!req.session.email) {
-    console.log("no email")
-    res.redirect('/');
+  if (!req.session.loggedIn) {
+    res.redirect('/login');
   } else {
-    console.log("email")
+
     next();
   }
 };
