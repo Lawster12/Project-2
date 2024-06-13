@@ -5,6 +5,9 @@ const lessonFormFunction = async (event) => {
     const module_id = document.querySelector('#module_id').value.trim();
     const response = await axios.post('/api/lessons', { lesson_title, url, module_id });
     if (response.status === 200) {
+        // lesson_title = "",
+        // url = "",
+        // module_id = ""
         console.log('Lesson added');
     } else {
         console.error('Failed to add lesson');
